@@ -27,6 +27,9 @@ TODO
 
   * Have the app check multiple sites in the background
   * Have different conditons to check
+    * Presence of a css selector on the site
+    * Whether a css selector's html meets a condition (>, <, =)
+  * Have different kinds of notifiers
     * Email
     * Growl
     * SMS
