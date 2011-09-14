@@ -2,28 +2,24 @@ require 'ruby-growl'
 
 module Outpost
   module Notifiers
-    # The Campfire notifier issues Outpost notifications to the 37signals'
-    # Campfire web app (http://campfirenow.com). It issues messages about
-    # the system status in the specified subdomain and room.
+    # Growl is a Mac OS X app that allows popup notifications on the
+    # desktop. There is a linux library called libnotify that should
+    # also work with ruby-growl
     #
-    # This requires the 'tinder' gem to be installed.
+    # Make sure you have Growl set to allow remote application
+    # registration
+
     class GrowlNotifier
 
-      # @param [Hash] Options to create a campfire notification.
-      # @option options [String] :subdomain The subdomain of your campfire
-      #   rooms
-      # @option options [String] :token An access token, can be found
-      #   in your Account info
-      # @option options [String] :room The room notifications will be sent to
-      # @option options [Class] :campfire_notifier Another Campfire
+      # @option options [String] :host The host that ruby growl should
+      # send the notification to.
       #   notification class. Defaults to Tinder's gem
       def initialize(options={})
         @host = options[:host]     || '127.0.0.1'
         @growl = Growl.new("localhost", "ruby-growl", ["ruby-growl Notification"], ["ruby-growl Notification"], nil)
-        # @growl = Growl.new('localhost', "ruby-growl", ["Reconnoiterer Notification"], ["Reconnoiterer Notification"], nil)
       end
 
-      # Issues a notification to a Campfire room. This is a callback, called by
+      # Issues a notification to a growl. This is a callback, called by
       # an Outpost instance.
       # @param [Outpost::Application, #read] outpost an instance of an outpost, containing
       #   latest status, messages and reports that can be queried to build

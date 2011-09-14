@@ -4,6 +4,14 @@ Reconnoiterer
 A simple command line application that wraps the [Outpost
 gem](https://github.com/vinibaggio/outpost).
 
+This application allows you to monitor websites and alerts you to
+certain conditions about the site, such as the response code return or
+the body contains a certain string. It uses Growl to popup a
+notification, so make sure you have Growl set to allow remote
+application registration. Eventually I will switch to use the
+tools as autotest-growl and allow popups to work with Windows and Linux.
+Hopefully you can still test the app without growl on your system.
+
 To run the code
     git clone https://github.com/coreypurcell/Reconnoiterer
 
