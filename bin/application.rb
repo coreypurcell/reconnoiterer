@@ -19,14 +19,14 @@ begin
   choose do |menu|
     menu.index
     menu.choice('Monitor Response Code') do
-      url.response_code(app)
+      url.response_code(200, app)
     end
     menu.choice('Response Regex Match') do
       regx = ask('Enter a regular expression (ex. .*Google):')
       url.response_body(Regexp.new(regx), app)
     end
   end
-
+  app.add_notifier("") 
   say("Running scouts")
   app.run(10)
 

@@ -5,3 +5,7 @@ gem 'outpost'
 gem 'net-ping'
 
 gem 'highline'
+
+gem 'ruby-growl'
+gem 'mail'
+gem 'tinder'

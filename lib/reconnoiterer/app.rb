@@ -1,7 +1,9 @@
 require 'outpost'
 require 'outpost/scouts'
+require 'outpost/notifiers'
 require 'uri'
 require_relative 'site'
+require_relative 'notifiers/growl'
 
 module Reconnoiterer
   class App
@@ -19,13 +21,17 @@ module Reconnoiterer
       site
     end
 
+    def add_notifier(notifier)
+      puts "add note"
+      @outpost.add_notifier( Outpost::Notifiers::GrowlNotifier, {} )
+      puts "added note"
+    end
+
     def run(sleep_time)
       outpost = @outpost
-      Thread.new do
-        sleep(sleep_time)
-        outpost.run
-        pp outpost.messages
-      end
+      outpost.run
+      pp outpost.messages
+      outpost.notify
     end
 
   end
