@@ -19,7 +19,11 @@ begin
   choose do |menu|
     menu.index
     menu.choice('Monitor Response Code') do
-      url.set_condition(app)
+      url.response_code(app)
+    end
+    menu.choice('Response Regex Match') do
+      regx = ask('Enter a regular expression (ex. .*Google):')
+      url.response_body(Regexp.new(regx), app)
     end
   end
 

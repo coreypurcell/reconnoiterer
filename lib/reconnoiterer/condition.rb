@@ -13,8 +13,13 @@ module Reconnoiterer
       end
     end
 
-    def css_selector(css_query, app)
-
+    def response_body(regx, app)
+      site = @site
+      app.outpost.add_scout(Outpost::Scouts::Http => @site.uri.host) do |config|
+        options :host => site.uri.host, :port => site.uri.port
+        report :up, :response_body => {:match => regx}
+      end
     end
+
   end
 end
