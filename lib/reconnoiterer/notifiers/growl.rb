@@ -15,8 +15,9 @@ module Outpost
       # send the notification to.
       #   notification class. Defaults to Tinder's gem
       def initialize(options={})
-        @host = options[:host]     || '127.0.0.1'
-        @growl = Growl.new("localhost", "ruby-growl", ["ruby-growl Notification"], ["ruby-growl Notification"], nil)
+        @host = options[:host] || 'localhost'
+        puts @host
+        @growl = Growl.new(@host, "ruby-growl", ["ruby-growl Notification"], ["ruby-growl Notification"], nil)
       end
 
       # Issues a notification to a growl. This is a callback, called by

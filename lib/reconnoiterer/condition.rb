@@ -6,6 +6,8 @@ module Reconnoiterer
     end
 
     def response_code(code)
+      # Use the local since Outpost passes the block to instance_eval
+      # (Closures for the win, just using @site won't work)
       site = @site
       Reconnoiterer.app.add_scout(Outpost::Scouts::Http => @site.uri.host) do |config|
         options :host => site.uri.host, :port => site.uri.port
@@ -15,7 +17,7 @@ module Reconnoiterer
 
     def response_body(regx)
       # Use the local since Outpost passes the block to instance_eval
-      # (Closures for the win)
+      # (Closures for the win, just using @site won't work)
       site = @site
       Reconnoiterer.app.add_scout(Outpost::Scouts::Http => @site.uri.host) do |config|
         options :host => site.uri.host, :port => site.uri.port

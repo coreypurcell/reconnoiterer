@@ -18,7 +18,10 @@ loop do
     menu.index
     menu.choice("Add a site to monitor") do
 
-      url = ask("Enter the site's URL") 
+      url = ask("Enter the site's URL (include the http://)") do |u|
+        u.validate = /^http\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?$/
+        u.responses[:not_valid] = "Please enter a valid url including the http://"
+      end
       url = app.add_url(url)
 
       say("Choose a condition to monitor")

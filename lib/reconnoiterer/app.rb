@@ -31,7 +31,7 @@ module Reconnoiterer
     def add_notifier(notifier)
       case notifier
       when /growl/i
-        @outpost.add_notifier( Outpost::Notifiers::GrowlNotifier, {} )
+        @outpost.add_notifier( Outpost::Notifiers::GrowlNotifier, {})
       when /email/i
       when /sms/i
       end
