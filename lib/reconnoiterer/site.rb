@@ -13,10 +13,5 @@ module Reconnoiterer
       @condition = Condition.new(self).response_code(200, app)
     end
 
-    # def destroy
-    #   @condition.destroy
-    # end
-
-
   end
 end
