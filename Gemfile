@@ -1,7 +1,9 @@
 # A sample Gemfile
 source "http://rubygems.org"
 
-gem 'outpost', :git => 'git://github.com/coreypurcell/outpost.git'
+group :forks do
+  gem 'outpost', :git => 'git://github.com/coreypurcell/outpost.git'
+end
 gem 'net-ping'
 
 gem 'highline'

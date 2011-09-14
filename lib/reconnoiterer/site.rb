@@ -1,4 +1,5 @@
 require_relative 'condition'
+require 'uri'
 require 'forwardable'
 
 module Reconnoiterer
@@ -17,7 +18,6 @@ module Reconnoiterer
 
     def destroy
       @condition.destroy
-      @condition = nil
     end
 
   end

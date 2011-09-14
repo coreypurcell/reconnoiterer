@@ -36,7 +36,7 @@ loop do
     end
     menu.choice("List monitored sites with statuses") do
       say("#{app.sites.map{|s| s.uri.host}.join(", ")}")
-      app.run(10)
+      app.run
       say("#{app.outpost.messages}")
     end
     menu.choice("Remove a monitored site") do
@@ -55,7 +55,7 @@ loop do
       choose do |note_menu|
         note_menu.index
         note_menu.choice("Growl Notification") do
-          app.add_notifier("")
+          app.add_notifier("Growl")
         end
       end
     end
