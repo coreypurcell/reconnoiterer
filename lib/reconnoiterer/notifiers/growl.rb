@@ -16,7 +16,6 @@ module Outpost
       #   notification class. Defaults to Tinder's gem
       def initialize(options={})
         @host = options[:host] || 'localhost'
-        puts @host
         @growl = Growl.new(@host, "ruby-growl", ["ruby-growl Notification"], ["ruby-growl Notification"], nil)
       end
 
