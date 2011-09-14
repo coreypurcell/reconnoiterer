@@ -11,3 +11,8 @@ gem 'highline'
 gem 'ruby-growl'
 gem 'mail'
 gem 'tinder'
+
+
+group :development, :test do
+  gem 'rspec'
+end
