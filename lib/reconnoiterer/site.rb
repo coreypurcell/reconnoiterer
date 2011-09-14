@@ -15,5 +15,10 @@ module Reconnoiterer
       @condition = Condition.new(self)
     end
 
+    def destroy
+      @condition.destroy
+      @condition = nil
+    end
+
   end
 end

@@ -1,7 +1,7 @@
 # A sample Gemfile
 source "http://rubygems.org"
 
-gem 'outpost'
+gem 'outpost', :git => 'git://github.com/coreypurcell/outpost.git'
 gem 'net-ping'
 
 gem 'highline'

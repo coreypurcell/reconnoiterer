@@ -1,3 +1,5 @@
+# use bundler to pull my fork from github
+require "bundler/setup"
 require 'outpost'
 require 'outpost/scouts'
 require 'outpost/notifiers'
@@ -8,7 +10,7 @@ require_relative 'notifiers/growl'
 module Reconnoiterer
   class App
     attr_reader :outpost
-    attr_accessor :urls
+    attr_accessor :sites
 
     def initialize
       @outpost = Outpost::Application.new
@@ -27,10 +29,15 @@ module Reconnoiterer
     end
 
     def run(sleep_time)
-      outpost = @outpost
-      outpost.run
-      pp outpost.messages
-      outpost.notify
+      @outpost.run
+      @outpost.notify
+    end
+
+    def remove_site(site)
+      @sites.delete(site)
+      site.destroy
+      # Clear out old reports
+      @outpost.reports = {}
     end
 
   end
