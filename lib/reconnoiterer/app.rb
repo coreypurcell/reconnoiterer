@@ -22,9 +22,8 @@ module Reconnoiterer
     end
 
     def add_notifier(notifier)
-      puts "add note"
+      # can add multiple notifier types here
       @outpost.add_notifier( Outpost::Notifiers::GrowlNotifier, {} )
-      puts "added note"
     end
 
     def run(sleep_time)

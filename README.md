@@ -31,6 +31,6 @@ TODO
     * Whether a css selector's html meets a condition (>, <, =)
   * Have different kinds of notifiers
     * Email
-    * Growl
+    * Growl - DONE
     * SMS
 
