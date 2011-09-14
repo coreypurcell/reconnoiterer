@@ -12,6 +12,9 @@ application registration. Eventually I will switch to use the
 tools as autotest-growl and allow popups to work with Windows and Linux.
 Hopefully you can still test the app without growl on your system.
 
+![Growl
+Screen](http://dl.dropbox.com/u/262398/Screen%20Shot%202011-09-14%20at%203.20.07%20PM.png)
+
 To run the code
     git clone https://github.com/coreypurcell/Reconnoiterer
 
