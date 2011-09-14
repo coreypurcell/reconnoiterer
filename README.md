@@ -25,6 +25,8 @@ Outpost will then check if the site is up
 
 TODO
 
+  * Work on improving interface for adding and removing sites to monitor
+    (Top proirity)
   * Have the app check multiple sites in the background
   * Have different conditons to check
     * Presence of a css selector on the site

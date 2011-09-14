@@ -15,14 +15,14 @@ begin
   u = ask("Enter a URL to monitor:")
   url = app.add_url(u)
   
-  say('Chose a condtion to monitor')
+  say("Choose a condtion to monitor")
   choose do |menu|
     menu.index
-    menu.choice('Monitor Response Code') do
+    menu.choice("Monitor Response Code") do
       url.response_code(200, app)
     end
-    menu.choice('Response Regex Match') do
-      regx = ask('Enter a regular expression (ex. .*Google):')
+    menu.choice("Response Regex Match") do
+      regx = ask("Enter a regular expression (ex. .*Google):")
       url.response_body(Regexp.new(regx), app)
     end
   end
