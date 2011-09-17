@@ -20,7 +20,7 @@ loop do
 
       url = ask("Enter the site's URL (include the http://)") do |u|
         u.validate = /^http\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?$/
-        u.responses[:not_valid] = "Please enter a valid url including the http://"
+        u.responses[:not_valid] = "Please enter a valid url with the http://"
       end
       url = app.add_url(url)
 
@@ -28,11 +28,13 @@ loop do
       choose do |add_menu|
         add_menu.index
         add_menu.choice("Monitor Response Code") do
-          url.response_code(200)
+          app.add_condition(:response_code, url)
+          # url.response_code(200)
         end
         add_menu.choice("Response Body Regex Match") do
           regx = ask("Enter a regular expression (without the forward slashes)")
-          url.response_body(Regexp.new(regx))
+          app.add_condition(:response_body, url, :match => regx)
+          # url.response_body(Regexp.new(regx))
         end
       end
 
@@ -58,14 +60,14 @@ loop do
       choose do |note_menu|
         note_menu.index
         note_menu.choice("Growl Notification") do
-          app.add_notifier("Growl")
+          app.add_notifier(:growl)
         end
       end
     end
     menu.choice("Exit")do
       exit
     end
-    
+
   end
 
 end

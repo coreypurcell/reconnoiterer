@@ -1,4 +1,5 @@
 # use bundler to pull my fork of Outpost from github for now
+require 'forwardable'
 
 module Reconnoiterer
   class App
@@ -19,6 +20,16 @@ module Reconnoiterer
       site = Site.new(url)
       @sites << site
       site
+    end
+
+    def add_condition(condition, url, options={})
+      scout, config_blk = case condition
+      when :response_code
+        url.response_code
+      when :response_body
+        url.response_body(options)
+      end
+      @outpost.add_scout(scout, &config_blk)
     end
 
     def add_notifier(notifier)

@@ -5,28 +5,30 @@ module Reconnoiterer
       @site = site
     end
 
-    def response_code(code)
+    def response_code(code=200)
       # Use the local since Outpost passes the block to instance_eval
       # (Closures for the win, just using @site won't work)
       site = @site
-      Reconnoiterer.app.add_scout(Outpost::Scouts::Http => @site.uri.host) do |config|
+      [{Outpost::Scouts::Http => site.uri.host}, lambda do |config|
         options :host => site.uri.host, :port => site.uri.port
         report :up, :response_code => code
-      end
+      end]
     end
 
-    def response_body(regx)
+    def response_body(opts)
       # Use the local since Outpost passes the block to instance_eval
       # (Closures for the win, just using @site won't work)
       site = @site
-      Reconnoiterer.app.add_scout(Outpost::Scouts::Http => @site.uri.host) do |config|
+      [{Outpost::Scouts::Http => site.uri.host}, lambda do |config|
         options :host => site.uri.host, :port => site.uri.port
-        report :up, :response_body => {:match => regx}
-      end
+        report :up, :response_body => opts
+      end]
     end
 
     def destroy
-      Reconnoiterer.app.scouts.delete_if {|scout,site| @site.uri.host == site[:description]}
+      Reconnoiterer.app.scouts.delete_if do |scout,site|
+        @site.uri.host == site[:description]
+      end
     end
 
   end
