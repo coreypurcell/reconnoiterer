@@ -18,3 +18,5 @@ group :development, :test do
   gem 'vcr'
   gem 'fakeweb'
 end
+
+gemspec

@@ -15,6 +15,7 @@ require 'uri'
 
 require 'outpost/scouts'
 require 'outpost/notifiers'
+require_relative 'reconnoiterer/version'
 require_relative 'reconnoiterer/app'
 require_relative 'reconnoiterer/site'
 require_relative 'reconnoiterer/condition'
