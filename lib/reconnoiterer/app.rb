@@ -1,11 +1,4 @@
 # use bundler to pull my fork of Outpost from github for now
-require "bundler/setup"
-require 'outpost'
-require 'outpost/scouts'
-require 'outpost/notifiers'
-require 'forwardable'
-require_relative 'site'
-require_relative 'notifiers/growl'
 
 module Reconnoiterer
   class App

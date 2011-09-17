@@ -1,4 +1,3 @@
-require_relative 'condition'
 require 'uri'
 require 'forwardable'
 

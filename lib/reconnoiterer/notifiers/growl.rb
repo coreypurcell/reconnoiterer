@@ -1,5 +1,3 @@
-require 'ruby-growl'
-
 module Outpost
   module Notifiers
     # Growl is a Mac OS X app that allows popup notifications on the
