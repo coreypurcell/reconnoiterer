@@ -1,5 +1,4 @@
-require 'pry'
-require 'rspec'
+require 'spec_helper'
 require_relative '../../lib/reconnoiterer'
 
 describe Reconnoiterer::App do
@@ -13,7 +12,9 @@ describe Reconnoiterer::App do
     url = app.add_url("http://www.msn.com")
     url.response_code(200)
 
-    app.run
+    VCR.use_cassette('google') do
+      app.run
+    end
 
     app.outpost.last_status.should == :up
   end
@@ -22,7 +23,9 @@ describe Reconnoiterer::App do
     url = app.add_url("http://www.msn.com")
     url.response_body(Regexp.new('msn'))
 
-    app.run
+    VCR.use_cassette('msn') do
+      app.run
+    end
 
     app.outpost.last_status.should == :up
   end
