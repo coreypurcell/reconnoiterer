@@ -33,7 +33,7 @@ loop do
         end
         add_menu.choice("Response Body Regex Match") do
           regx = ask("Enter a regular expression (without the forward slashes)")
-          app.add_condition(:response_body, url, :match => regx)
+          app.add_condition(:response_body, url, :match => Regexp.new(regx))
           # url.response_body(Regexp.new(regx))
         end
       end
