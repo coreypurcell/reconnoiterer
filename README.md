@@ -20,7 +20,7 @@ To run the code
 
     bundle install
 
-    ruby bin/recon.rb
+    ruby bin/recon
 
 
 Input a url that you would like to fetch.
