@@ -8,6 +8,7 @@ module Reconnoiterer
 
     attr_reader :outpost
     attr_accessor :sites
+    attr_reader :status_cache
 
     def_delegators :@outpost, :scouts, :scouts=, :reports, :reports=, :add_scout
 
@@ -43,7 +44,10 @@ module Reconnoiterer
 
     def run
       @outpost.run
-      @outpost.notify
+      if @status_cache != @outpost.last_status
+        @status_cache = @outpost.last_status
+        @outpost.notify
+      end
     end
 
     def remove_site(site)

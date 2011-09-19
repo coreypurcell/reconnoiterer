@@ -11,15 +11,23 @@ require_relative '../lib/reconnoiterer'
 
 app = Reconnoiterer.app
 
-say("Reconnoiterer - Monitoring your site")
+Thread.new do
+  loop do
+    app.run
+    sleep 5
+  end
+end
+
+say("\n\n*** Reconnoiterer - Monitoring your site ***\n\n")
 loop do
   say("What would you like to do?")
   choose do |menu|
     menu.index
     menu.choice("Add a site to monitor") do
 
-      url = ask("Enter the site's URL (include the http://)") do |u|
-        u.validate = /^http\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?$/
+      url = ask("Enter the site's URL") do |u|
+        # TODO Get rid of this part( don't require http)
+        # u.validate = /^http\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?$/
         u.responses[:not_valid] = "Please enter a valid url with the http://"
       end
       url = app.add_url(url)
@@ -40,9 +48,11 @@ loop do
 
     end
     menu.choice("List monitored sites with statuses") do
-      say("#{app.sites.map{|s| s.uri.host}.join(", ")}")
-      app.run
-      say("#{app.outpost.messages}")
+      if app.outpost.messages.blank?
+        say("Recon has not been completed. The spy will return in 5 seconds.")
+      else
+        say("#{app.outpost.messages}")
+      end
     end
     menu.choice("Remove a monitored site") do
       say("Select a site to remove")

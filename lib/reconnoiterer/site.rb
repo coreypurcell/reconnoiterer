@@ -11,7 +11,11 @@ module Reconnoiterer
     def_delegators :@condition, :response_code, :response_body
 
     def initialize(url)
-      @uri = URI.parse(url)
+      if url =~ /^http:\/\//
+        @uri = URI.parse(url)
+      else
+        @uri = URI.parse("http://#{url}")
+      end
       @condition = Condition.new(self)
     end
 

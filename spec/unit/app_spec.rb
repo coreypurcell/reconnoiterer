@@ -1,6 +1,6 @@
 require_relative '../../lib/reconnoiterer/app'
 
-class Site
+class Reconnoiterer::Site
 end
 
 module Outpost;class Application;end;end;
@@ -57,4 +57,13 @@ describe Reconnoiterer::App do
     end
   end
 
+  describe '#run' do
+
+    # it "runs the outpost scouts and caches their reports" do
+    #   @outpost_mock.should_receive(:run)
+    #   @outpost_mock.should_receive(:last_status).and_return(:up)
+    #   app.status_cache.should == :up
+    # end
+
+  end
 end
