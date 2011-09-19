@@ -8,6 +8,7 @@ begin
 rescue LoadError
   require 'bundler'
   Bundler.setup(:default, :forks)
+  require 'outpost'
 end
 require 'forwardable'
 require 'ruby-growl'
