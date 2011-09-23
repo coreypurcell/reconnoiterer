@@ -21,6 +21,7 @@ require_relative 'reconnoiterer/app'
 require_relative 'reconnoiterer/site'
 require_relative 'reconnoiterer/condition'
 require_relative 'reconnoiterer/notifiers/growl'
+require_relative 'reconnoiterer/notifiers/sms'
 
 module Reconnoiterer
   extend self

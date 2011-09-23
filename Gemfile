@@ -11,6 +11,7 @@ gem 'ruby-growl'
 gem 'mail'
 gem 'tinder'
 gem 'net-ping'
+gem 'twilio-rb'
 
 group :development, :test do
   gem 'rake'

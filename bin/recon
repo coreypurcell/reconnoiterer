@@ -72,6 +72,10 @@ loop do
         note_menu.choice("Growl Notification") do
           app.add_notifier(:growl)
         end
+				note_menu.choice("SMS Notification") do
+					phone = ask("Enter your phone number: ")
+					app.add_notifier(:sms, :to => phone)
+				end
       end
     end
     menu.choice("Exit")do

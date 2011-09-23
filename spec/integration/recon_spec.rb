@@ -29,4 +29,22 @@ describe Reconnoiterer::App do
     app.outpost.last_status.should == :up
   end
 
+  it "notifies you when a status changes" do
+    # url = app.add_url("http://www.google.com")
+    # app.add_condition(:response_body, url, :match => Regexp.new('google'))
+
+    # YOU CAN'T USE VCR LIKE THIS
+    # VCR.use_cassette('google') do
+    #   app.run
+    # end
+    # app.outpost.last_status.should == :up
+
+    # VCR.use_cassette('msn') do
+    #   app.run
+    # end
+    # app.outpost.last_status.should == :down
+
+    pending
+  end
+
 end

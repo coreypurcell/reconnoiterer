@@ -33,12 +33,13 @@ module Reconnoiterer
       @outpost.add_scout(scout, &config_blk)
     end
 
-    def add_notifier(notifier)
+    def add_notifier(notifier, options={})
       case notifier
       when /growl/i
-        @outpost.add_notifier( Outpost::Notifiers::GrowlNotifier, {})
+        @outpost.add_notifier(Outpost::Notifiers::GrowlNotifier, {})
       when /email/i
       when /sms/i
+				@outpost.add_notifier(Outpost::Notifiers::SMS, options)
       end
     end
 
