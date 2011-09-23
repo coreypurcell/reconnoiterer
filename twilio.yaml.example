@@ -1,0 +1,5 @@
+# A sample configuration for Twilio SMS
+twilio:
+  account_sid: AC00000000000000000000000
+  auth_token: XXXXXXXXXXXXXXXXXXXXXXXXX
+  phone_number: 2225551010
