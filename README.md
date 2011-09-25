@@ -34,16 +34,13 @@ Select a condition to check
 Outpost will then check if the site is up
 
 
-TODO
+### SMS Notifications
 
-  * Work on improving interface for adding and removing sites to monitor
-    - DONE
-  * Have the app check multiple sites in the background
-  * Have different conditons to check
-    * Presence of a css selector on the site
-    * Whether a css selector's html meets a condition (>, <, =)
-  * Have different kinds of notifiers
-    * Email
-    * Growl - DONE
-    * SMS
+Currently Reconnoiterer will use my Twilio account to send messages.
+Feel free to use it for testing, but if you want to keep using the app
+you must change it to use your account. Copy the twilio.yaml.example
+file and set up your twilio account.
+
+    twilio.yaml # twilio configuration file
+
 
