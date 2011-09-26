@@ -1,28 +1,30 @@
-require_relative '../../lib/reconnoiterer/app'
+require 'reconnoiterer'
 
-class Reconnoiterer::Site
-end
+# class Reconnoiterer::Site
+# end
 
-module Outpost;class Application;end;end;
+# module Outpost;class Application;end;end;
 
 describe Reconnoiterer::App do
   include Reconnoiterer
 
   let(:app) { App.new }
   before do
-    @outpost_mock = double(:@outpost, :add_scout => "")
-    Outpost::Application.stub!(:new).and_return(@outpost_mock)
+    # @outpost_mock = double(:@outpost, :add_scout => "")
+    # Outpost::Application.stub!(:new).and_return(@outpost_mock)
+    app.stub(:outpost => double(:add_scout => true))
   end
 
   describe '#add_url' do
     it "adds a Site with the url" do
       app.add_url("google.com")
       app.sites.should have(1).things
+      app.sites.first.should be_an_instance_of Site
     end
 
     it "returns the Site instance" do
       s = app.add_url("google.com")
-      s.should be_an_instance_of Site
+      s.uri.host.should match(/google\.com/)
     end
   end
 
@@ -38,7 +40,7 @@ describe Reconnoiterer::App do
 
       it "adds the scout" do
         site_mock.should_receive(:response_code)
-        @outpost_mock.should_receive(:add_scout)
+        app.outpost.should_receive(:add_scout)
         app.add_condition(:response_code, site_mock)
       end
     end
@@ -51,7 +53,7 @@ describe Reconnoiterer::App do
 
       it "adds the scout" do
         site_mock.should_receive(:response_body).with(:match => "matchme")
-        @outpost_mock.should_receive(:add_scout)
+        app.outpost.should_receive(:add_scout)
         app.add_condition(:response_body, site_mock, :match => "matchme")
       end
     end

@@ -7,7 +7,7 @@ module Reconnoiterer
     attr_accessor :sites
     attr_reader :status_cache
 
-    def_delegators :@outpost, :scouts, :scouts=, :reports, :reports=, :add_scout
+    def_delegators :@outpost, :scouts, :scouts=, :reports, :reports=, :add_scout, :messages, :last_status
 
     def initialize
       @outpost = Outpost::Application.new
@@ -27,16 +27,15 @@ module Reconnoiterer
       when :response_body
         url.response_body(options)
       end
-      @outpost.add_scout(scout, &config_blk)
+      outpost.add_scout(scout, &config_blk)
     end
 
     def add_notifier(notifier, options={})
       case notifier
-      when /growl/i
+      when :growl
         @outpost.add_notifier(Outpost::Notifiers::GrowlNotifier, {})
-      when /email/i
-      when /sms/i
-				@outpost.add_notifier(Outpost::Notifiers::SMS, options)
+      when :sms
+        @outpost.add_notifier(Outpost::Notifiers::SMS, options)
       end
     end
 

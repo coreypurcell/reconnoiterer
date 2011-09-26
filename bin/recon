@@ -2,6 +2,7 @@
 #
 
 require 'highline/import'
+require 'uri'
 
 require_relative '../lib/reconnoiterer'
 
@@ -23,32 +24,39 @@ loop do
     menu.choice("Add a site to monitor") do
 
       url = ask("Enter the site's URL") do |u|
-        # TODO Get rid of this part( don't require http)
-        # u.validate = /^http\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?$/
-        u.responses[:not_valid] = "Please enter a valid url with the http://"
+        u.validate = lambda do |u|
+          begin
+            URI.parse(u)
+          rescue URI::InvalidURIError
+            false
+          end
+        end
+        u.responses[:not_valid] = "Please enter a valid url."
       end
-      url = app.add_url(url)
+      site = app.add_url(url)
 
       say("Choose a condition to monitor")
       choose do |add_menu|
         add_menu.index
         add_menu.choice("Monitor Response Code") do
-          app.add_condition(:response_code, url)
-          # url.response_code(200)
+          app.add_condition(:response_code, site)
         end
         add_menu.choice("Response Body Regex Match") do
           regx = ask("Enter a regular expression (without the forward slashes)")
-          app.add_condition(:response_body, url, :match => Regexp.new(regx))
-          # url.response_body(Regexp.new(regx))
+          app.add_condition(:response_body, site, :match => Regexp.new(regx))
+        end
+        add_menu.choice("Response Body Regex does Not Match") do
+          regx = ask("Enter a regular expression (without the forward slashes)")
+          app.add_condition(:response_body, site, :not_match => Regexp.new(regx))
         end
       end
 
     end
     menu.choice("List monitored sites with statuses") do
-      if app.outpost.messages.blank?
+      if app.messages.blank?
         say("Recon has not been completed. The spy will return in 5 seconds.")
       else
-        say("#{app.outpost.messages}")
+        say("#{app.messages}")
       end
     end
     menu.choice("Remove a monitored site") do
@@ -69,10 +77,10 @@ loop do
         note_menu.choice("Growl Notification") do
           app.add_notifier(:growl)
         end
-				note_menu.choice("SMS Notification") do
-					phone = ask("Enter your phone number: ")
-					app.add_notifier(:sms, :to => phone)
-				end
+        note_menu.choice("SMS Notification") do
+          phone = ask("Enter your phone number: ")
+          app.add_notifier(:sms, :to => phone)
+        end
       end
     end
     menu.choice("Exit")do
