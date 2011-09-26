@@ -1,10 +1,3 @@
-begin
-  require 'twilio-rb'
-rescue LoadError => e
-  puts "Please install twilio-rb gem: gem install twilio-rb"
-  raise
-end
-
 module Outpost
   module Notifiers
     class SMS

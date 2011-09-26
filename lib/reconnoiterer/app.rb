@@ -1,6 +1,3 @@
-# use bundler to pull my fork of Outpost from github for now
-require 'forwardable'
-
 module Reconnoiterer
   class App
 

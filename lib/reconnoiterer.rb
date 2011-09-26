@@ -13,6 +13,10 @@ end
 require 'forwardable'
 require 'ruby-growl'
 require 'uri'
+require 'twilio-rb'
+require 'mail'
+require 'tinder'
+require 'net/ping/external'
 
 require 'outpost/scouts'
 require 'outpost/notifiers'

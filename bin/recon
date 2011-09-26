@@ -1,10 +1,7 @@
 #!/usr/local/bin/ruby
 #
 
-require 'rubygems'
-
 require 'highline/import'
-require 'pp'
 
 require_relative '../lib/reconnoiterer'
 

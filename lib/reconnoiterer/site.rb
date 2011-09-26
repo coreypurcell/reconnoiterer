@@ -1,6 +1,3 @@
-require 'uri'
-require 'forwardable'
-
 module Reconnoiterer
   class Site
 

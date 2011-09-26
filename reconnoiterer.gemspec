@@ -18,8 +18,16 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
 
   s.add_dependency "outpost"
+  s.add_dependency "highline"
+  s.add_dependency "ruby-growl"
+  s.add_dependency "mail"
+  s.add_dependency "tinder"
+  s.add_dependency "net-ping"
+  s.add_dependency "twilio-rb"
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
+  s.add_development_dependency "fakeweb"
+  s.add_development_dependency "vcr"
 
   s.executables = ["recon"]
 
