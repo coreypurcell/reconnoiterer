@@ -64,7 +64,7 @@ loop do
       choose do |rm_menu|
         rm_menu.index
         app.sites.each do |site|
-          rm_menu.choice("#{site.uri.host}") do 
+          rm_menu.choice("#{site.host}") do 
             app.remove_site(site)
           end
         end

@@ -49,7 +49,9 @@ module Reconnoiterer
 
     def remove_site(site)
       @sites.delete(site)
-      site.destroy
+      outpost.scouts.delete_if do |scout,s|
+        site.host == s[:description]
+      end
       # Clear out old reports
       @outpost.reports = {}
     end

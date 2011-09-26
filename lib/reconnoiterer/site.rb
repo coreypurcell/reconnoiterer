@@ -6,6 +6,7 @@ module Reconnoiterer
     attr_reader :uri
 
     def_delegators :@condition, :response_code, :response_body
+    def_delegators :@uri, :host, :port
 
     def initialize(url)
       if url =~ /^http:\/\//
@@ -14,10 +15,6 @@ module Reconnoiterer
         @uri = URI.parse("http://#{url}")
       end
       @condition = Condition.new(self)
-    end
-
-    def destroy
-      @condition.destroy
     end
 
   end

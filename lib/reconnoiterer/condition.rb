@@ -9,26 +9,24 @@ module Reconnoiterer
       # Use the local since Outpost passes the block to instance_eval
       # (Closures for the win, just using @site won't work)
       site = @site
-      [{Outpost::Scouts::Http => site.uri.host}, lambda do |config|
-        options :host => site.uri.host, :port => site.uri.port
+      scout = {Outpost::Scouts::Http => site.host}
+      config_block = lambda do |config|
+        options :host => site.host, :port => site.port
         report :up, :response_code => code
-      end]
+      end
+      [scout, config_block]
     end
 
     def response_body(opts)
       # Use the local since Outpost passes the block to instance_eval
       # (Closures for the win, just using @site won't work)
       site = @site
-      [{Outpost::Scouts::Http => site.uri.host}, lambda do |config|
-        options :host => site.uri.host, :port => site.uri.port
+      scout = {Outpost::Scouts::Http => site.host}
+      config_block = lambda do |config|
+        options :host => site.host, :port => site.port
         report :up, :response_body => opts
-      end]
-    end
-
-    def destroy
-      Reconnoiterer.app.scouts.delete_if do |scout,site|
-        @site.uri.host == site[:description]
       end
+      [scout, config_block]
     end
 
   end

@@ -24,7 +24,7 @@ describe Reconnoiterer::App do
 
     it "returns the Site instance" do
       s = app.add_url("google.com")
-      s.uri.host.should match(/google\.com/)
+      s.host.should match(/google\.com/)
     end
   end
 

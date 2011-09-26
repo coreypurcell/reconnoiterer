@@ -11,8 +11,8 @@ describe Condition do
 
   before do
     site = double("Site")
-    site.stub_chain(:uri, :host).and_return("google.com")
-    site.stub_chain(:uri, :port).and_return(80)
+    site.stub(:host).and_return("google.com")
+    site.stub(:port).and_return(80)
 
     @cond = Condition.new(site)
   end

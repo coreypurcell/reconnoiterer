@@ -21,7 +21,7 @@ module Outpost
       #   latest status, messages and reports that can be queried to build
       #   a notification message.
       def notify(outpost)
-        Twilio::SMS.create :to => "7243550320", :from => @from,
+        Twilio::SMS.create :to => @to, :from => @from,
                            :body => build_message(outpost)
       end
 
@@ -39,10 +39,9 @@ module Outpost
       def build_message(outpost)
         status = outpost.last_status.to_s
 
-        message  = "This is the report for #{outpost.name}: "
-        message += "System is #{status.upcase}!\n\n"
-
-        message += outpost.messages.join("\n")
+        message  = "Reconnoiterer: System is #{status.upcase}!\n\n"
+        message << outpost.messages.join("\n")
+        message[0..159] # trim message to fit in an sms
       end
     end
   end
