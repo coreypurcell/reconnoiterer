@@ -7,7 +7,7 @@ begin
   require 'outpost'
 rescue LoadError
   require 'bundler'
-  Bundler.setup(:default, :forks)
+  Bundler.setup(:default)
   require 'outpost'
 end
 require 'forwardable'
