@@ -41,11 +41,4 @@ Copy the twilio.yaml.example file and add your credentials.
 
     cp twilio.yaml.example twilio.yaml
 
-#### Testing SMS Notifications
-
-Currently Reconnoiterer will use my Twilio account to send messages.
-Feel free to use it for testing, but if you want to keep using the app
-you must change it to use your account. I will be removing this file
-once RMU is finished.
-
 
